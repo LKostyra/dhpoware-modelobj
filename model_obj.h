@@ -73,6 +73,7 @@ public:
         int startIndex;
         int triangleCount;
         const Material *pMaterial;
+        int materialIndex;
     };
 
     ModelOBJ();

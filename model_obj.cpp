@@ -524,6 +524,7 @@ void ModelOBJ::buildMeshes()
             materialId = m_attributeBuffer[i];
             pMesh = &m_meshes[numMeshes++];            
             pMesh->pMaterial = &m_materials[materialId];
+            pMesh->materialIndex = materialId;
             pMesh->startIndex = i * 3;
             ++pMesh->triangleCount;
         }
