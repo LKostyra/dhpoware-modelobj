@@ -23,6 +23,7 @@
 #if !defined(MODEL_OBJ_H)
 #define MODEL_OBJ_H
 
+#include <yip-imports/resource_loader.h>
 #include <cstdio>
 #include <map>
 #include <string>
@@ -78,7 +79,7 @@ public:
     ~ModelOBJ();
 
     void destroy();
-    bool import(const char *pszFilename, bool rebuildNormals = false);
+    void import(Resource::Loader & loader, const std::string & filename, bool rebuildNormals = false);
     void normalize(float scaleTo = 1.0f, bool center = true);
     void reverseWinding();
 
@@ -132,9 +133,9 @@ private:
     void buildMeshes();
     void generateNormals();
     void generateTangents();
-    void importGeometryFirstPass(FILE *pFile);
-    void importGeometrySecondPass(FILE *pFile);
-    bool importMaterials(const char *pszFilename);
+    void importGeometryFirstPass(Resource::Loader & loader, const std::vector<std::string> & lines);
+    void importGeometrySecondPass(const std::vector<std::string> & lines);
+    void importMaterials(Resource::Loader & loader, const std::string & filename);
     void scale(float scaleFactor, float offset[3]);
 
     bool m_hasPositions;
